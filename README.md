@@ -4,7 +4,7 @@ The companion repository for the book "Machine Learning Fundamentals".
 Detailed  contents is [here](materials/DetailedContents.pdf)
 ## Contents
 
-### Ch 1. Introduction   ([slide])
+### Ch 1. Introduction   ([slide](materials/DetailedContents.pdf))
 ### Ch 2. Mathematical Foundation
 ### Ch 3. Supervised Machine Learning (in a nutshell)
 ### Ch 4.  Feature Extraction
