@@ -1,7 +1,7 @@
 # "Machine Learning Fundamentals" Book
 The companion repository for the book "Machine Learning Fundamentals".
 
-Detailed  contents is [here](http://github.com/iNCML/MachineLearningBook/materials/DetailedContents.pdf)
+Detailed  contents is [here](materials/DetailedContents.pdf)
 ## Contents
 
 ### Ch 1. Introduction   ([slide])
