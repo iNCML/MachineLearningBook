@@ -1,10 +1,10 @@
 # "Machine Learning Fundamentals" Book
-The companion repository for the book "Machine Learning Fundamentals".
+The companion repository for the book *Machine Learning Fundamentals* (C) Hui Jiang 2020, published by Cambridge University Press.
 
 Detailed  contents is [here](materials/DetailedContents.pdf)
 ## Contents
 
-### Ch 1. Introduction   ([slide](materials/DetailedContents.pdf))
+### Ch 1. Introduction   (slides)
 ### Ch 2. Mathematical Foundation
 ### Ch 3. Supervised Machine Learning (in a nutshell)
 ### Ch 4.  Feature Extraction
