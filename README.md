@@ -2,7 +2,8 @@
 The companion repository for the book **Machine Learning Fundamentals** ©[*Hui Jiang*](https://wiki.eecs.yorku.ca/user/hj/) 2020, published by Cambridge University Press.
 
 ## Detailed  contents is [here](materials/DetailedContents.pdf)
-# Slides 
+
+# Slides per chapter  
 ### Ch 1. Introduction    ([slides](materials/slides/ch1_Introduction.pdf))
 ### Ch 2. Mathematical Foundation  ([slides](materials/slides/ch2_Mathematical_Foundation.pdf))
 ### Ch 3. Supervised Machine Learning (in a nutshell) ([slides](materials/slides/ch3_Supervised_Machine_Learning.pdf))
