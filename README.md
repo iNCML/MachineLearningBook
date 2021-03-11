@@ -1,9 +1,10 @@
 # "Machine Learning Fundamentals" Book
 The companion repository for the book **Machine Learning Fundamentals** ©[*Hui Jiang*](https://wiki.eecs.yorku.ca/user/hj/) 2020, published by Cambridge University Press.
 
-## Detailed  contents is [here](materials/DetailedContents.pdf)
+# Detailed  contents is [here](materials/DetailedContents.pdf)
 
-# Slides per chapter  
+# Slides per chapter
+
 ### Ch 1. Introduction    ([slides](materials/slides/ch1_Introduction.pdf))
 ### Ch 2. Mathematical Foundation  ([slides](materials/slides/ch2_Mathematical_Foundation.pdf))
 ### Ch 3. Supervised Machine Learning (in a nutshell) ([slides](materials/slides/ch3_Supervised_Machine_Learning.pdf))
@@ -25,3 +26,16 @@ The companion repository for the book **Machine Learning Fundamentals** ©[*Hui 
 ### Ch 13. Entangled Models ([slides](materials/slides/ch13_Entangled_Models.pdf))
 ### Ch 14. Bayesian Learning ([slides](materials/slides/ch14_Bayesian_Learning.pdf))
 ### Ch 15. Graphical Models ([slides](materials/slides/ch15_Graphical_Models.pdf))
+
+# Lab Projects (using Jupyter Notebooks)
+
+### Lab 0. Preparation 
+### Lab 1. Data Visualization
+### Lab 2. Linear Regression
+### Lab 3. Binary Classification
+### Lab 4. Support Vector Machines
+### Lab 5. Matrix Factorization
+### Lab 6. Fully-Connected Deep Neural Networks
+### Lab 7. Convolutional Neural Networks
+### Lab 8. Decision Trees, Random Forests and Boosted Trees
+### Lab 9. Gaussian Classifiers and Gaussian Mixture Models
