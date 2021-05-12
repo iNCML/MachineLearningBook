@@ -1,5 +1,5 @@
 # "Machine Learning Fundamentals" Book
-The companion repository for the book **Machine Learning Fundamentals** ©[*Hui Jiang*](https://wiki.eecs.yorku.ca/user/hj/) 2020, published by Cambridge University Press.
+The companion repository for the book **Machine Learning Fundamentals** ©[*Hui Jiang*](https://wiki.eecs.yorku.ca/user/hj/) 2021, published by Cambridge University Press.
 
 ## Citation (bibtex):
 ```
