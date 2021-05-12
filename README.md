@@ -2,13 +2,14 @@
 The companion repository for the book **Machine Learning Fundamentals** ©[*Hui Jiang*](https://wiki.eecs.yorku.ca/user/hj/) 2020, published by Cambridge University Press.
 
 # Citation (bibtex):
-@book{Jiang-MLF-2021, \\
-author = {Hui Jiang}, \\
-title = {Machine Learning Fundamentals}, \\
-publisher = {Cambridge University Press}, \\
+```
+@book{Jiang-MLF-2021, 
+author = {Hui Jiang},
+title = {Machine Learning Fundamentals}, 
+publisher = {Cambridge University Press},
 year = {2021} 
 }
-
+```
 
 
 # Detailed  contents is [here](materials/DetailedContents.pdf)
