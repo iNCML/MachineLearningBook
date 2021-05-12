@@ -4,10 +4,10 @@ The companion repository for the book **Machine Learning Fundamentals** ©[*Hui 
 ## Citation (bibtex):
 ```
 @book{Jiang-MLF-2021, 
-author = {Hui Jiang},
-title = {Machine Learning Fundamentals}, 
-publisher = {Cambridge University Press},
-year = {2021} 
+  author = {Hui Jiang},
+  title = {Machine Learning Fundamentals}, 
+  publisher = {Cambridge University Press},
+  year = {2021} 
 }
 ```
 
