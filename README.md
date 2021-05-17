@@ -16,7 +16,7 @@ The companion repository for the book **Machine Learning Fundamentals** ©[*Hui 
 
 ## Slides per chapter
 
-- Ch 1: Introduction    ([slides](materials/slides/ch1_Introduction.pdf))
+- **Ch 1**: Introduction    ([slides](materials/slides/ch1_Introduction.pdf))
 - Ch 2:  Mathematical Foundation  ([slides](materials/slides/ch2_Mathematical_Foundation.pdf))
 - Ch 3: Supervised Machine Learning (in a nutshell) ([slides](materials/slides/ch3_Supervised_Machine_Learning.pdf))
 - Ch 4: Feature Extraction ([slides](materials/slides/ch4_Feature_Extraction.pdf))
