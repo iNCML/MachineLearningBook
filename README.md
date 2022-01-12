@@ -36,7 +36,7 @@ The companion repository for the book [**Machine Learning Fundamentals**](https:
 
 NOTE: we are still working on these labs and each lab will be made public as soon as it is finalized. 
 
-- **Lab 0**: [Preparation](https://colab.research.google.com/drive/1nB-uULhbpFTqlUOekEW3272eqKJg6qok?usp=sharing)  (available at [Colab](https://colab.research.google.com/drive/1nB-uULhbpFTqlUOekEW3272eqKJg6qok?usp=sharing), [ipynb](labs/ipynb/Lab0-Preparation.ipynb), matlab)
+- **Lab 0**: [Preparation](https://colab.research.google.com/drive/1nB-uULhbpFTqlUOekEW3272eqKJg6qok?usp=sharing)  (available at [Colab](https://colab.research.google.com/drive/1nB-uULhbpFTqlUOekEW3272eqKJg6qok?usp=sharing), [ipynb](labs/ipynb/Lab0_Preparation.ipynb), matlab)
 - **Lab 1**: Data Visualization 
 - **Lab 2**: Linear Regression 
 - **Lab 3**: Binary Classification 
