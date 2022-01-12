@@ -32,15 +32,17 @@ The companion repository for the book [**Machine Learning Fundamentals**](https:
 - **Ch 14: Bayesian Learning** ([slides](materials/slides/ch14_Bayesian_Learning.pdf))
 - **Ch 15: Graphical Models** ([slides](materials/slides/ch15_Graphical_Models.pdf))
 
-## Lab Projects (using Jupyter Notebooks)
+## Lab Projects (using Jupyter Notebooks and/or Matlab)
 
-- **Lab 0**: Preparation 
-- **Lab 1**: Data Visualization
-- **Lab 2**: Linear Regression
-- **Lab 3**: Binary Classification
-- **Lab 4**: Support Vector Machines
-- **Lab 5**: Matrix Factorization
-- **Lab 6**: Fully-Connected Deep Neural Networks
-- **Lab 7**: Convolutional Neural Networks
-- **Lab 8**: Decision Trees, Random Forests and Boosted Trees
-- **Lab 9**: Gaussian Classifiers and Gaussian Mixture Models
+NOTE: we are still working on these labs and each lab will be made public as soon as it is finalized. 
+
+- **Lab 0**: [Preparation](https://colab.research.google.com/drive/1nB-uULhbpFTqlUOekEW3272eqKJg6qok?usp=sharing)  (available at [Colab](https://colab.research.google.com/drive/1nB-uULhbpFTqlUOekEW3272eqKJg6qok?usp=sharing), [ipynb](labs/ipynb/Lab0-Preparation.ipynb), matlab)
+- **Lab 1**: Data Visualization 
+- **Lab 2**: Linear Regression 
+- **Lab 3**: Binary Classification 
+- **Lab 4**: Support Vector Machines 
+- **Lab 5**: Matrix Factorization 
+- **Lab 6**: Fully-Connected Deep Neural Networks 
+- **Lab 7**: Convolutional Neural Networks 
+- **Lab 8**: Decision Trees, Random Forests and Boosted Trees 
+- **Lab 9**: Gaussian Classifiers and Gaussian Mixture Models 
