@@ -38,7 +38,7 @@ NOTE: we are still working on these labs and each lab will be made public as soo
 
 - **Lab 0**: [Preparation](labs/pdf/Lab0_Preparation.pdf)  (available at [Colab](https://colab.research.google.com/drive/1nB-uULhbpFTqlUOekEW3272eqKJg6qok?usp=sharing), [ipynb](labs/ipynb/Lab0_Preparation.ipynb), matlab)
 - **Lab 1**: [Data Visualization](labs/pdf/Lab1_Data_Visualization.pdf) (available at [Colab](https://colab.research.google.com/drive/1zE2OrdJNkmzzn30CdDsj1y9qz585-afF?usp=sharing), [ipynb](labs/ipynb/Lab1_Data_Visualization.ipynb), matlab)
-- **Lab 2**: Linear Regression 
+- **Lab 2**: [Linear Regression](labs/pdf/Lab2_Linear_Regression.pdf)(available at [Colab](https://colab.research.google.com/drive/1Ix04T8y0evnFnXWvHHWu0KfqsOA48hUg?usp=sharing), [ipynb](labs/ipynb/Lab2_Linear_Regression.ipynb), matlab)
 - **Lab 3**: Binary Classification 
 - **Lab 4**: Support Vector Machines 
 - **Lab 5**: Matrix Factorization 
