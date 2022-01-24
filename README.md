@@ -40,7 +40,7 @@ NOTE: we are still working on these labs and each lab will be made public as soo
 - **Lab 1**: [Data Visualization](labs/pdf/Lab1_Data_Visualization.pdf) (available at [Colab](https://colab.research.google.com/drive/1zE2OrdJNkmzzn30CdDsj1y9qz585-afF?usp=sharing), [ipynb](labs/ipynb/Lab1_Data_Visualization.ipynb), matlab)
 - **Lab 2**: [Linear Regression](labs/pdf/Lab2_Linear_Regression.pdf)  (available at [Colab](https://colab.research.google.com/drive/1Ix04T8y0evnFnXWvHHWu0KfqsOA48hUg?usp=sharing), [ipynb](labs/ipynb/Lab2_Linear_Regression.ipynb), matlab)
 - **Lab 3**: [Logistic Regression](labs/pdf/Lab3_Logistic_Regression.pdf)  (available at [Colab](https://colab.research.google.com/drive/1qUi2qgwBMmHJb7Bx7ca_braGtptmzFOQ?usp=sharing), [ipynb](labs/ipynb/Lab3_Logistic_Regression.ipynb), matlab)
-- **Lab 4**: Support Vector Machines 
+- **Lab 4**: [Support Vector Machines](labs/html/Lab4_Support_Vector_Machine.html)  ([pdf](labs/pdf/Lab4_Support_Vector_Machine.pdf)) (available at [Colab](https://colab.research.google.com/drive/1vlN46Xhfv4ES8jFWWI0iTj3WHKjb0KMg?usp=sharing), [ipynb](labs/ipynb/Lab4_Support_Vector_Machine.ipynb), matlab)
 - **Lab 5**: Matrix Factorization 
 - **Lab 6**: Fully-Connected Deep Neural Networks 
 - **Lab 7**: Convolutional Neural Networks 
