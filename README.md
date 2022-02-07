@@ -1,5 +1,8 @@
 # "Machine Learning Fundamentals" Book
 The companion repository for the book [**Machine Learning Fundamentals**](https://www.amazon.com/Machine-Learning-Fundamentals-Concise-Introduction/dp/1108940021) ©[*Hui Jiang*](https://wiki.eecs.yorku.ca/user/hj/) 2021, published by Cambridge University Press.
+<div style="text-align: center">
+<img src="materials/cover.png" width="188">
+</div>
 
 ## Citation (bibtex):
 ```
@@ -11,8 +14,8 @@ The companion repository for the book [**Machine Learning Fundamentals**](https:
 }
 ```
 
-
 ## Detailed  contents is [here](materials/DetailedContents.pdf)
+
 
 ## Slides per chapter
 
@@ -43,6 +46,7 @@ NOTE: we are still working on these labs and each lab will be made public as soo
 - **Lab 4**: [Support Vector Machines](labs/pdf/Lab4_Support_Vector_Machine.pdf) (available at [Colab](https://colab.research.google.com/drive/1vlN46Xhfv4ES8jFWWI0iTj3WHKjb0KMg?usp=sharing), [ipynb](labs/ipynb/Lab4_Support_Vector_Machine.ipynb), matlab)
 - **Lab 5**: [Fully-Connected Neural Networks](labs/pdf/Lab5_Fully_Connected_Neural_Networks.pdf) (available at [Colab](https://colab.research.google.com/drive/1TY3fAAS18lyGrlEsvLhaYm6fIBP7CDgD?usp=sharing), [ipynb](labs/ipynb/Lab5_Fully_Connected_Neural_Networks.ipynb), matlab)
 - **Lab 6**: [Convolutional Neural Networks](labs/pdf/Lab6_Convolutional_Neural_Networks.pdf)  (available at [Colab](https://colab.research.google.com/drive/1Zkeujeoh4jNR9bQ67kfuIE7cV6KifZS2?usp=sharing), [ipynb](labs/ipynb/Lab6_Convolutional_Neural_Networks.ipynb), matlab)
-- **Lab 7**: Matrix Factorization 
-- **Lab 8**: Decision Trees, Random Forests and Boosted Trees 
-- **Lab 9**: Gaussian Classifiers and Gaussian Mixture Models 
+- **Lab 7**: Recurrent Neural Networks and Transformers 
+- **Lab 8**: Matrix Factorization 
+- **Lab 9**: Decision Trees, Random Forests and Boosted Trees 
+- **Lab 10**: Gaussian Classifiers and Gaussian Mixture Models 

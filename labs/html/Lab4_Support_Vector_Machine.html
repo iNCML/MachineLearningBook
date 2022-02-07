@@ -13104,7 +13104,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Example-4.1:"><strong>Example 4.1:</strong><a class="anchor-link" href="#Example-4.1:">&#182;</a></h3><p><em>Use the SVM funcions from scikit-learn to build a binary classifier to classify two digits ('3' and '8') in the MNIST data set. Fine-tune the hyper-parameters for three important kernel funcions, i.e. linear, polynomial and Gaussian RBF kernels, towards the best possible performance.</em></p>
+<h3 id="Example-4.1:"><strong>Example 4.1:</strong><a class="anchor-link" href="#Example-4.1:">&#182;</a></h3><p><em>Use the SVM functions from scikit-learn to build a binary classifier to classify two digits ('3' and '8') in the MNIST data set. Fine-tune the hyper-parameters for three important kernel funcions, i.e. linear, polynomial and Gaussian RBF kernels, towards the best possible performance.</em></p>
 
 </div>
 </div>
@@ -13636,10 +13636,10 @@ MY linear SVM (C=10): training accuracy=96.35%  test accuracy=96.47%
 <span class="n">c</span><span class="o">=</span><span class="mi">1</span>
 
 <span class="n">linearSVM</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> linearSVM.fit(X_train,y_train)
+<span class="o">%</span><span class="k">timeit</span> linearSVM.fit(X_train,y_train)
 
 <span class="n">svm</span> <span class="o">=</span> <span class="n">mySVM1</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> svm.fit(X_train,y_train)
+<span class="o">%</span><span class="k">timeit</span> svm.fit(X_train,y_train)
 </pre></div>
 
     </div>
@@ -13688,9 +13688,7 @@ Wall time: 8.47 s
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First of all, let us consider how to use vectorization to compute various kernel matrices for two sets of feature vectors, i.e. $\{ \mathbf{x}_1 , \cdots, \mathbf{x}_N\} $ and $\{ \mathbf{y}_1 , \cdots, \mathbf{y}_M\} $,  where $\mathbf{x}_i \in \mathbb{R}^d$ and $\mathbf{y}_j \in \mathbb{R}^d$.</p>
 <p>As the way on page 112, if we pack all feature vectors $\mathbf{x}_i$ from the first set row by row as a matrix $\mathbf{X}  \in \mathbb{R}^{N \times d}$, and all feature vectors $\mathbf{y}_j$ from the second set  row by row as a matrix $\mathbf{Y}  \in \mathbb{R}^{M \times d}$, we can conveniently compute the kernel matrices for different kernel functions as follows:</p>
-<ol>
-<li>Linear kernel $\Phi(\textbf{x}_i,\textbf{y}_j) = \textbf{x}^\intercal_i \textbf{y}_j $: </li>
-</ol>
+<p>(1) Linear kernel $\Phi(\textbf{x}_i,\textbf{y}_j) = \textbf{x}^\intercal_i \textbf{y}_j $:</p>
 $$
 \mathbf{K} = \Bigg[ \Phi(\textbf{x}_i,\textbf{y}_j) \Bigg]_{N \times M}
 = \begin{bmatrix}  
@@ -13699,9 +13697,7 @@ $$
    \textbf{x}_N^\intercal \textbf{y}_1  &amp;  \cdots   &amp; \textbf{x}_N^\intercal \textbf{y}_M 
  \end{bmatrix}_{N \times M} 
  = \mathbf{X} \mathbf{Y}^\intercal
-$$<ol>
-<li>Polynomial kernel $\Phi(\textbf{x}_i,\textbf{y}_j) = (\textbf{x}^\intercal_i \textbf{y}_j+1)^p $:</li>
-</ol>
+$$<p>(2)  Polynomial kernel $\Phi(\textbf{x}_i,\textbf{y}_j) = (\textbf{x}^\intercal_i \textbf{y}_j+1)^p $:</p>
 $$
 \mathbf{K} = \Bigg[ \Phi(\textbf{x}_i,\textbf{y}_j) \Bigg]_{N \times M}
 = \begin{bmatrix}  
@@ -13710,9 +13706,14 @@ $$
    (\textbf{x}_N^\intercal \textbf{y}_1+1)^p  &amp;  \cdots   &amp; (\textbf{x}_N^\intercal \textbf{y}_M +1)^p
  \end{bmatrix}_{N \times M} 
  = \mbox{power} \Big( \mathbf{X} \mathbf{Y}^\intercal +1, p)
-$$<ol>
-<li>Gaussian RBF kernel $\Phi(\textbf{x}_i,\textbf{y}_j) = \exp(-\gamma ||\textbf{x}_i - \textbf{y}_j||^2)$: </li>
-</ol>
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(3)  Gaussian RBF kernel $\Phi(\textbf{x}_i,\textbf{y}_j) = \exp(-\gamma ||\textbf{x}_i - \textbf{y}_j||^2)$:</p>
 <p>We can show that 
 $$
 ||\textbf{x}_i - \textbf{y}_j||^2 = \big( \textbf{x}_i - \textbf{y}_j \big)^\intercal \big( \textbf{x}_i - \textbf{y}_j \big)
