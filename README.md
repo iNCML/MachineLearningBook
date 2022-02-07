@@ -4,20 +4,8 @@ The companion repository for the book [**Machine Learning Fundamentals**](https:
 <img src="materials/cover.png" width="188">
 </div>
 
-## Citation (bibtex):
-```
-@book{Jiang-MLF-2021, 
-  author = {Hui Jiang},
-  title = {Machine Learning Fundamentals}, 
-  publisher = {Cambridge University Press},
-  year = {2021} 
-}
-```
 
-## Detailed  contents is [here](materials/DetailedContents.pdf)
-
-
-## Slides per chapter
+## Slides per chapter (Detailed  contents is [here](materials/DetailedContents.pdf))
 
 - **Ch 1: Introduction**    ([slides](materials/slides/ch1_Introduction.pdf))
 - **Ch 2:  Mathematical Foundation**  ([slides](materials/slides/ch2_Mathematical_Foundation.pdf))
@@ -50,3 +38,13 @@ NOTE: we are still working on these labs and each lab will be made public as soo
 - **Lab 8**: Matrix Factorization 
 - **Lab 9**: Decision Trees, Random Forests and Boosted Trees 
 - **Lab 10**: Gaussian Classifiers and Gaussian Mixture Models 
+
+## Citation (bibtex):
+```
+@book{Jiang-MLF-2021, 
+  author = {Hui Jiang},
+  title = {Machine Learning Fundamentals}, 
+  publisher = {Cambridge University Press},
+  year = {2021} 
+}
+```
