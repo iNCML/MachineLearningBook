@@ -13112,44 +13112,14 @@ Readers may use the given logistic regression codes as a template to implement t
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#link my Google drive</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># download MNIST data from Google drive</span>
 
-<span class="kn">from</span> <span class="nn">google.colab</span> <span class="k">import</span> <span class="n">drive</span>
-<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
-</pre></div>
+<span class="o">!</span>gdown --folder https://drive.google.com/drive/folders/1r20aRjc2iu9O3kN3Xj9jNYY2uMgcERY1 <span class="m">2</span>&gt; /dev/null
 
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Mounted at /content/drive
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># install python_mnist</span>
+<span class="c1"># install python_mnist</span>
 
 <span class="o">!</span>pip install python_mnist
 </pre></div>
@@ -13168,10 +13138,16 @@ Readers may use the given logistic regression codes as a template to implement t
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Collecting python_mnist
+<pre>Processing file 1Jf2XqGR7y1fzOZNKLJiom7GmZZUzXhfs t10k-images-idx3-ubyte
+Processing file 1qiYu9dW3ZNrlvTFO5fI4qf8Wtr8K-pCu t10k-labels-idx1-ubyte
+Processing file 1SnWvBcUETRJ53rEJozFUUo-hOQFPKxjp train-images-idx3-ubyte
+Processing file 1kKEIi_pwVHmabByAnwZQsaMgro9XiBFE train-labels-idx1-ubyte
+Building directory structure completed
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting python_mnist
   Downloading python_mnist-0.7-py2.py3-none-any.whl (9.6 kB)
-Installing collected packages: python-mnist
-Successfully installed python-mnist-0.7
+Installing collected packages: python_mnist
+Successfully installed python_mnist-0.7
 </pre>
 </div>
 </div>
@@ -13182,7 +13158,7 @@ Successfully installed python-mnist-0.7
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#load MINST images</span>
@@ -13190,7 +13166,7 @@ Successfully installed python-mnist-0.7
 <span class="kn">from</span> <span class="nn">mnist</span> <span class="k">import</span> <span class="n">MNIST</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">mnist_loader</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="s1">&#39;/content/drive/My Drive/Colab Notebooks/datasets/MNIST&#39;</span><span class="p">)</span>
+<span class="n">mnist_loader</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="s1">&#39;MNIST&#39;</span><span class="p">)</span>
 <span class="n">train_data</span><span class="p">,</span> <span class="n">train_label</span> <span class="o">=</span> <span class="n">mnist_loader</span><span class="o">.</span><span class="n">load_training</span><span class="p">()</span>
 <span class="n">test_data</span><span class="p">,</span> <span class="n">test_label</span> <span class="o">=</span> <span class="n">mnist_loader</span><span class="o">.</span><span class="n">load_testing</span><span class="p">()</span>
 <span class="n">train_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span><span class="o">/</span><span class="mi">255</span> <span class="c1"># norm to [0,1]</span>
