@@ -13114,41 +13114,41 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>All hyper-parameters: (usually we have $d= n \times h$)</p>
 <ul>
-<li>$d$: embedding dimension </li>
+<li>$d$: embedding dimension</li>
 <li>$B$: batch size</li>
 <li>$T$: block size</li>
-<li>$n$: head number </li>
+<li>$n$: head number</li>
 <li>$h$: head size</li>
 </ul>
 <ol>
 <li><p>Given a mini-batch of $B$ input sequences, packed as $\mathbf{X} \in \mathbb{R}^{B \times d \times T}$, and a multi-head transformer consisting of all parameter matrices as $\mathbf{A}^{(j)}, \mathbf{B}^{(j)}, \mathbf{C}^{(j)} \in \mathbb{R}^{h \times d}$   ($j=1,2,\cdots,n$). We first arrange these matrices into three larger parameter matrices,
-$\mathbf{A}, \mathbf{B}, \mathbf{C} \in \mathbb{R}^{nh \times d}$, and 
+$\mathbf{A}, \mathbf{B}, \mathbf{C} \in \mathbb{R}^{nh \times d}$, and
 then further pack these three matrices into a single large matrix  $\mathbf{M} \in \mathbb{R}^{3nh \times d}$.
 We can generate query, key and value matrices as follows:
 $$
 \begin{bmatrix}
 \mathbf{Q} \\
 \mathbf{K} \\
-\mathbf{V} \end{bmatrix}  = 
+\mathbf{V} \end{bmatrix}  =
 \begin{bmatrix}\mathbf{A}\\
-\mathbf{B} \\\mathbf{C} 
+\mathbf{B} \\\mathbf{C}
 \end{bmatrix}  \mathbf{X}
 = \mathbf{M} \, \mathbf{X}
 $$
 where $\mathbf{Q}, \mathbf{K}, \mathbf{V} \in \mathbb{R}^{B \times nh \times T}$.</p>
 </li>
-<li><p>Re-shape the query, key and value matrices as follows: 
+<li><p>Re-shape the query, key and value matrices as follows:
 $$
 \mathbf{Q}, \mathbf{K}, \mathbf{V}: \mathbb{R}^{B \times nh \times T}  → \mathbb{R}^{B \times n \times h \times T}
 $$</p>
 </li>
-<li><p>Apply the point-wise attention as: 
+<li><p>Apply the point-wise attention as:
 $$
 \mathbf{Q}^\intercal \mathbf{K} \in \mathbb{R}^{B \times n \times T \times T}
 $$
 If necessary, apply an <strong>upper</strong> triangular masking for causal attetion.</p>
 </li>
-<li><p>Apply softmax <strong>column by column</strong> 
+<li><p>Apply softmax <strong>column by column</strong>
 $$
 \mathcal{A} =  \mathrm{softmax} \Big(\mathbf{Q}^\intercal \mathbf{K} \Big)
 \;\;\; (\in \mathbb{R}^{B \times n \times T \times T})
@@ -13167,7 +13167,7 @@ $$</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -13181,7 +13181,7 @@ $$</li>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">n_embd</span> <span class="o">=</span> <span class="n">n_embd</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">block_size</span> <span class="o">=</span> <span class="n">block_size</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span> <span class="o">=</span> <span class="n">n_head</span> 
+    <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span> <span class="o">=</span> <span class="n">n_head</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">causal</span> <span class="o">=</span> <span class="n">causal</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
 
@@ -13225,7 +13225,7 @@ $$</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cfg</span><span class="o">=</span><span class="n">config</span><span class="p">()</span>
@@ -13235,7 +13235,10 @@ $$</li>
   <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="n">cfg</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">block_size</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">3</span><span class="o">*</span><span class="n">cfg</span><span class="o">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">n_embd</span><span class="p">),</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">n_embd</span><span class="p">))</span> 
+<span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">3</span><span class="o">*</span><span class="n">cfg</span><span class="o">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">n_embd</span><span class="p">),</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">n_embd</span><span class="p">))</span>
+
+<span class="c1">#######################</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span><span class="s1">&#39;cpu&#39;</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;batch_size=</span><span class="si">{cfg.batch_size}</span><span class="s1"> n_embd=</span><span class="si">{cfg.n_embd}</span><span class="s1"> block_size=</span><span class="si">{cfg.block_size}</span><span class="s1"> n_head=</span><span class="si">{cfg.n_head}</span><span class="s1"> device=</span><span class="si">{cfg.device}</span><span class="s1">&#39;</span><span class="p">)</span>
 
@@ -13284,15 +13287,15 @@ $$</li>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>batch_size=10 n_embd=768 block_size=128 n_head=8 device=cpu
-pytorch forward pass loss: 19929.55859375
+pytorch forward pass loss: 20090.15234375
 forward() pass and pytorch auto-grad backward() running on cpu:
-64.5 ms ± 12 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
-113 ms ± 11.1 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+67.3 ms ± 11.3 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+108 ms ± 2.3 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 batch_size=10 n_embd=768 block_size=128 n_head=8 device=cuda
-pytorch forward pass loss: 19929.556640625
+pytorch forward pass loss: 20090.15234375
 forward() pass and pytorch auto-grad backward() running on cuda:
-2.08 ms ± 5.13 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-9.29 ms ± 271 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+2.01 ms ± 11.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+10.2 ms ± 1.81 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre>
 </div>
 </div>
@@ -13319,7 +13322,7 @@ In other words, each char in text is treated as a distinct token in the language
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># download tiny shakespeare text corpus from Google drive</span>
@@ -13353,13 +13356,15 @@ Building directory structure completed
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load text file as a character string; build char-level vocabulary, encoder and decoder</span>
 <span class="c1">#  (borrowed from nanoGPT, https://github.com/karpathy/nanoGPT)</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;tinyshakespeare/input.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="n">train_txt_file</span> <span class="o">=</span> <span class="s1">&#39;tinyshakespeare/input.txt&#39;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">train_txt_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;length of dataset in characters: {len(data):,}&quot;</span><span class="p">)</span>
 
@@ -13419,7 +13424,7 @@ val has 111,540 tokens
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define all parts in a GPT model, such as attention, MLP, LN modules</span>
@@ -13437,7 +13442,7 @@ val has 111,540 tokens
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">n_embd</span> <span class="o">=</span> <span class="n">n_embd</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">block_size</span> <span class="o">=</span> <span class="n">block_size</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span> <span class="o">=</span> <span class="n">n_head</span> 
+    <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span> <span class="o">=</span> <span class="n">n_head</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">causal</span> <span class="o">=</span> <span class="n">causal</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">n_layer</span> <span class="o">=</span> <span class="n">n_layer</span>
@@ -13504,7 +13509,7 @@ val has 111,540 tokens
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">attn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ln_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mlp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ln_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">x</span>
-      
+
 <span class="k">class</span> <span class="nc">GPT</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -13588,7 +13593,7 @@ val has 111,540 tokens
             <span class="n">probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
             <span class="c1"># sample from the distribution</span>
             <span class="n">idx_next</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-            
+
             <span class="c1"># append sampled index to the running sequence and continue</span>
             <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx_next</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
@@ -13602,7 +13607,7 @@ val has 111,540 tokens
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># training script to learn GPT models based on all given hyper-parameters</span>
@@ -13616,30 +13621,34 @@ val has 111,540 tokens
 <span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="c1"># -----------------------------------------------------------------------------</span>
-<span class="c1"># default config values </span>
+<span class="c1"># default config values</span>
 <span class="c1"># I/O</span>
-<span class="n">eval_interval</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">eval_iters</span> <span class="o">=</span> <span class="mi">200</span>
 
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">12</span> 
-<span class="n">block_size</span> <span class="o">=</span> <span class="mi">128</span> <span class="c1">#1024</span>
+<span class="c1">######### model size ##########</span>
+<span class="n">n_layer</span> <span class="o">=</span> <span class="mi">3</span>      <span class="c1"># num of layers</span>
+<span class="n">n_head</span> <span class="o">=</span> <span class="mi">8</span>       <span class="c1"># num of attn heads per layer</span>
+<span class="n">head_size</span> <span class="o">=</span> <span class="mi">96</span>   <span class="c1"># size of each attn head</span>
+<span class="c1">###############################</span>
 
-<span class="c1"># model</span>
-<span class="n">n_layer</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1">#12</span>
-<span class="n">n_head</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1">#12</span>
-<span class="n">n_embd</span> <span class="o">=</span> <span class="mi">768</span>
+<span class="c1">###### training hyperparameters ######</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">6e-4</span>   <span class="c1"># max learning rate</span>
+<span class="n">max_iters</span> <span class="o">=</span> <span class="mi">10000</span>      <span class="c1"># total number of training iterations</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">12</span>        <span class="c1"># mini-batch size</span>
+<span class="n">block_size</span> <span class="o">=</span> <span class="mi">128</span>       <span class="c1"># block size</span>
+<span class="c1">#####################################</span>
 
 <span class="c1"># adamw optimizer</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">6e-4</span> <span class="c1"># max learning rate</span>
-<span class="n">max_iters</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># total number of training iterations</span>
 <span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.9</span>
 <span class="n">beta2</span> <span class="o">=</span> <span class="mf">0.95</span>
-<span class="n">grad_clip</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># clip gradients at this value, or disable if == 0.0</span>
+
 <span class="c1"># learning rate decay settings</span>
 <span class="n">decay_lr</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># whether to decay the learning rate</span>
 <span class="n">warmup_iters</span> <span class="o">=</span> <span class="mi">2000</span> <span class="c1"># how many steps to warm up for</span>
 <span class="n">lr_decay_iters</span> <span class="o">=</span> <span class="mi">600000</span> <span class="c1"># should be ~= max_iters per Chinchilla</span>
 <span class="n">min_lr</span> <span class="o">=</span> <span class="mf">6e-5</span> <span class="c1"># minimum learning rate, should be ~= learning_rate/10 per Chinchilla</span>
+<span class="n">grad_clip</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># clip gradients at this value, or disable if == 0.0</span>
+<span class="n">eval_interval</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">eval_iters</span> <span class="o">=</span> <span class="mi">200</span>
 
 <span class="c1"># system</span>
 <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span> <span class="c1"># examples: &#39;cpu&#39;, &#39;cuda&#39;, &#39;cuda:0&#39;, &#39;cuda:1&#39; etc., or try &#39;mps&#39; on macbooks</span>
@@ -13647,13 +13656,15 @@ val has 111,540 tokens
 
 <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1337</span><span class="p">)</span>
 
+<span class="n">n_embd</span> <span class="o">=</span> <span class="n">n_head</span> <span class="o">*</span> <span class="n">head_size</span>
+
 <span class="n">data_tr</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_ids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">)</span>
 <span class="n">data_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">val_ids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">)</span>
 
 <span class="c1"># poor man&#39;s data loader</span>
 <span class="k">def</span> <span class="nf">get_batch</span><span class="p">(</span><span class="n">split</span><span class="p">):</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data_tr</span> <span class="k">if</span> <span class="n">split</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span> <span class="k">else</span> <span class="n">data_val</span>
- 
+
     <span class="n">ix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">block_size</span><span class="p">,</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">block_size</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">block_size</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ix</span><span class="p">])</span>
@@ -13663,7 +13674,7 @@ val has 111,540 tokens
 <span class="c1"># init a new model from scratch</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initializing a new model from scratch&quot;</span><span class="p">)</span>
 <span class="n">conf</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">n_layer</span><span class="o">=</span><span class="n">n_layer</span><span class="p">,</span> <span class="n">n_head</span><span class="o">=</span><span class="n">n_head</span><span class="p">,</span> <span class="n">n_embd</span><span class="o">=</span><span class="n">n_embd</span><span class="p">,</span>\
-              <span class="n">block_size</span><span class="o">=</span><span class="n">block_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>                                 
+              <span class="n">block_size</span><span class="o">=</span><span class="n">block_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">GPT</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
@@ -13729,15 +13740,15 @@ val has 111,540 tokens
     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">(</span><span class="n">set_to_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="c1"># evaluate the loss on train/val sets and write checkpoints</span>
-    <span class="k">if</span> <span class="n">iter_num</span> <span class="o">%</span> <span class="n">eval_interval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">iter_num</span> <span class="o">%</span> <span class="n">eval_interval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
       <span class="c1"># timing and logging</span>
       <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
       <span class="n">dt</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
       <span class="n">t0</span> <span class="o">=</span> <span class="n">t1</span>
 
       <span class="n">losses</span> <span class="o">=</span> <span class="n">estimate_loss</span><span class="p">()</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;step </span><span class="si">{iter_num}</span><span class="s2">: train loss </span><span class="si">{losses[&#39;train&#39;]:.4f}</span><span class="s2">, val loss </span><span class="si">{losses[&#39;val&#39;]:.4f}</span><span class="s2"> (time lapses </span><span class="si">{dt:.4f}</span><span class="s2"> seconds)&quot;</span><span class="p">)</span>  
- 
+      <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;step </span><span class="si">{iter_num}</span><span class="s2">: train loss </span><span class="si">{losses[&#39;train&#39;]:.4f}</span><span class="s2">, val loss </span><span class="si">{losses[&#39;val&#39;]:.4f}</span><span class="s2"> (time lapses </span><span class="si">{dt:.4f}</span><span class="s2"> seconds)&quot;</span><span class="p">)</span>
+
     <span class="n">iter_num</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># termination conditions</span>
@@ -13761,17 +13772,17 @@ val has 111,540 tokens
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Initializing a new model from scratch
 number of parameters: 21.29M
-step 0: train loss 6.0489, val loss 6.1314 (time lapses 0.0444 seconds)
-step 1000: train loss 1.9380, val loss 2.0659 (time lapses 74.5444 seconds)
-step 2000: train loss 1.7263, val loss 1.8830 (time lapses 73.8705 seconds)
-step 3000: train loss 1.6312, val loss 1.8060 (time lapses 74.0807 seconds)
-step 4000: train loss 1.5833, val loss 1.7804 (time lapses 73.9943 seconds)
-step 5000: train loss 1.5541, val loss 1.7657 (time lapses 73.8365 seconds)
-step 6000: train loss 1.5213, val loss 1.7317 (time lapses 73.7452 seconds)
-step 7000: train loss 1.5082, val loss 1.7253 (time lapses 73.5869 seconds)
-step 8000: train loss 1.4806, val loss 1.7024 (time lapses 73.7368 seconds)
-step 9000: train loss 1.4641, val loss 1.6969 (time lapses 73.7174 seconds)
-step 10000: train loss 1.4558, val loss 1.6763 (time lapses 73.7342 seconds)
+step 0: train loss 6.0489, val loss 6.1314 (time lapses 1.3229 seconds)
+step 1000: train loss 1.9487, val loss 2.0776 (time lapses 71.9827 seconds)
+step 2000: train loss 1.7173, val loss 1.8682 (time lapses 72.5995 seconds)
+step 3000: train loss 1.6054, val loss 1.7837 (time lapses 72.4764 seconds)
+step 4000: train loss 1.5453, val loss 1.7346 (time lapses 72.9500 seconds)
+step 5000: train loss 1.5098, val loss 1.7246 (time lapses 72.6370 seconds)
+step 6000: train loss 1.4861, val loss 1.6935 (time lapses 72.3111 seconds)
+step 7000: train loss 1.4586, val loss 1.6863 (time lapses 72.0951 seconds)
+step 8000: train loss 1.4294, val loss 1.6498 (time lapses 71.9847 seconds)
+step 9000: train loss 1.4137, val loss 1.6569 (time lapses 71.8970 seconds)
+step 10000: train loss 1.4048, val loss 1.6409 (time lapses 71.9453 seconds)
 </pre>
 </div>
 </div>
@@ -13782,37 +13793,47 @@ step 10000: train loss 1.4558, val loss 1.6763 (time lapses 73.7342 seconds)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># sample from a trained model to generate new text</span>
-<span class="c1"># (borrowed from nanoGPT, https://github.com/karpathy/nanoGPT) </span>
+<span class="c1"># (borrowed from nanoGPT, https://github.com/karpathy/nanoGPT)</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> 
-<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># number of samples to draw</span>
+<span class="n">start</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>     <span class="c1"># specify a text string as prompt</span>
+<span class="c1">#start = &quot;FILE:tinyQA/prompts.txt&quot;  #can also specify a file of multiple prompts, use as: &quot;FILE:prompt.txt&quot;</span>
+
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># number of samples to draw</span>
 <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># number of tokens generated in each sample</span>
-<span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="c1"># 1.0 = no change, &lt; 1.0 = less random, &gt; 1.0 = more random, in predictions</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.9</span> <span class="c1"># 1.0 = no change, &lt; 1.0 = less random, &gt; 1.0 = more random, in predictions</span>
 <span class="n">top_k</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#200 # retain only the top_k most likely tokens, clamp others to have 0 probability</span>
 
-<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1337</span><span class="p">)</span>
-<span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1337</span><span class="p">)</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">1337</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
-<span class="c1"># encode the beginning of the prompt</span>
-<span class="k">if</span> <span class="n">start</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;FILE:&#39;</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">start_ids</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">start_ids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+<span class="c1"># sampling the model based on one prompt</span>
+<span class="k">def</span> <span class="nf">SampleOnePrompt</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
+    <span class="n">start_ids</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">start_ids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
 
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_samples</span><span class="p">):</span>
-  <span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="n">top_k</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">decode</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_samples</span><span class="p">):</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="n">top_k</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">decode</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------&#39;</span><span class="p">)</span>
+
+<span class="c1"># encode the beginning of the prompt</span>
+<span class="k">if</span> <span class="n">start</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;FILE:&#39;</span><span class="p">):</span>     <span class="c1"># for multiple prompts</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">5</span><span class="p">:],</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">Lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">Lines</span><span class="p">:</span>
+            <span class="n">SampleOnePrompt</span><span class="p">(</span><span class="n">prompt</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># chop the trailing newline char</span>
+<span class="k">else</span><span class="p">:</span>
+     <span class="n">SampleOnePrompt</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>     <span class="c1"># for one prompt</span>
 </pre></div>
 
     </div>
@@ -13831,203 +13852,92 @@ step 10000: train loss 1.4558, val loss 1.6763 (time lapses 73.7342 seconds)
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
-DUCHESS OF YORK:
-Should feasome is thy beother mage-day
-Beat taunt: many heavy heart.
-
-DUKE OF AUMEENE:
-How and Do now, I must once, to that I coverth,
-Your besing ensengencellet maid overe, and the next
-To wanter like him; he the must him sorrow and
-plaw yeverning I came and gold home:
-I the good leont not when evices the most revenge
-For ecst of the house
-To known bruised sorrow the mufferein.
-
-PUCHESS OF POF ELOFFORDON:
-If I have done, what all his grave him best a
-are no Rrestime from the w
----------------
-
-Menening kneess.
-
-You cannot:
-It so, singhion-foot, by wealth.
-
-CORIOLANUS:
-What is the counsel?
-
-Messenger:
-Which might though shouldst not.
-
-LUCIO:
-A perily to medie?
-
-LUCIO:
-For heart too stings he the end, and you&#39;ll poove
-The hearting heard, in our house,
-Have which frominic was sould you may me,
-Whose lack to this, my sounder,
-To I shall power a not with tyranner,
-How thund thou she certake this road,
-Peckentuous the sile England, my sharpose
-Forbs become the time worther for Gloucester&#39;s 
----------------
-
-Most any great healthine, which whence not
-And here did till; I am not were should
-Is eembles mines an tender infire,
-For I there, follow not scall bear
-Hear with I have a cannot do make the dead
-In to delive attell the leide, twas his laughter woe
-In amove deter your Heness and lel belove.&#39;
-
-DUKE VINCENTIO:
-How I want Marcius, and brother him to his;
-The clotter on the the vain hath been seement,
-Cry the to this new-bable holden her tongue.
-
 ANGELO:
-The perselves that so it it,
-But I will have 
+And comfort is not the aires boast were?
+Broach me?
+I am such by me uuth, her bardshirts,
+Butwick my faction of one heavy sprinfully come my fade
+Whomes it ender content Hermions to and quiet.
+
+DUKE VINCERDONE:
+For come humb onceive: therefore hew young Bolingbroke?
+
+AUTIO:
+&#39;Forld, demate kneel, not what evily, the most
+His haply deeds poor gold; the execute,
+Turk for treamiss mufficing allowers,
+Maderive my of tranking, as to discraffair the Earldom.
+Go could all not rel my hand for hi
 ---------------
 
-The states knows; and plack, say, as I
-the me of avoides corns to my eteel;
-Herself, who should teven courselves against brawfull,
-The tongue the many should will wash a good,
-Before, my lord morning presentings.
+Men pay to Rome.
 
-FLORIZT:
-Not, there was all before thy master&#39;s cousin?
-
-Nurse:
-God make he upon the wound afollow&#39;d of atter,
-As it, insuislike he putiness, how that was welk:
-And stand thou went my head, and sension a brave leave to,
-The ha particerns witned whom for that I should
-My the work, and I
+YORK:
+Why dead so you myself ancy;
+But which they should I have not us. I have my sighs:
+I should so, my many more alive,
+Or hued the heavy life mouth comfort coureen;
+How what most it my Rome, sir, come,
+But sunnish&#39;d, let he need out
+to accusature but from the way soul of burldness
+Whose lack&#39;d this herce advise,
+To I stand plaven in the eate,
+Though off, if out orning tears more portance whoset,
+To the silver were belived so him the word
+By the times often their; you contone
 ---------------
 
-Thee last old trumphs lost to beting in time:
-Sorry high thously deadly be and telledge,
-But her does it soon a world healt.
-If my liest tongue for thou do the seizens
-Aft sheek.
-
-BRUTKNCARLISBURY:
-Bay thy cousin&#39; many help his nour presentleman,
-And nonested some sent the new-eld some sea,
-But and advisher&#39;d crossing majure of thanks,
-The seld sleep with be my breaster&#39;s danger,
-And so hold someting biggaretain&#39;d joy,
-But whas and thinkingbroads the body
-Merry knows of find still of furthen for
+Most and breath. Their fellows are. She, the is, do did
+Till of anon thy hoose on thee, master to sea;
+Be wereing think of his victor wouldst,
+And friends abstime Inname a canity to make the and
+inkery dolement tell the leing buwield to-night
+each I did the deter your Honest too land;
+As there cold consume an the vow
+Shrough he it heart some not is conditing torment:
+Slad my lord, as belive
+To cave but forth this name and who hear the tewn,
+To may mine enemy treless fins yet of Rome,
+Than art el
 ---------------
 
-
-MENIUS:
-A lord, the senatue of trees being in true,
-Those tatural womanspes we mone not.
-
-First Citizen:
-Even my atters: for thy father, we must thee ride,
-And sleet for her pasterness of ing one:
-Till many oftend him with the common sin
-Of kerns with me issue this bitles shors, here
-But have to my tantinual name offecting fair!
-
-NORTHUMBERLONTH:
-This Donought promisence on the of insuinal
-But would thy dreath never late,
-His crimind my house weaches my father:
-Nor so, he is son inference, is t
----------------
-
-Should come outh, for I say, fill not he,
-I know this revention the king and thought:
-The susparal: years the arthy villain!
-
-Second Musician:
-Not sitterry think&#39;d ahler of By
-Fellows and rage me restill had stand. Henry marry
-person; of your grey mean cause your rappeals,
-That say you the word the much persar&#39;d;
-And yet the king its and thy lather and trone?
-Therefore, I persuade have face.
-
-MENIUS:
-My lord.
-
-Messenger:
-He&#39;s any hath sinst playder I care goodxpleasure,
-And less not light their 
----------------
-
-ISCALEO:
-Servaloise thou hast thy brothere.
-
-Second Murderer:
-It in your hearths erefore tellow me.
+The smools kills; and place, say, as I
+Is but of a-father my sun.
 
 POMPEY:
-They beseech then must think end the will night thee.
+No, sir,
+Sir, sir, I well accured my heart he know.
 
-HASTINGS:
-I my groan, poor I should thy sword
-More poor be tappear&#39;d funcles do service, it
-ell the sacrament been strenged there; but now, think
-the is on of his captules head stoward esurpring
-That think thou diss the to death.
+SAMPSON:
+If your son mistrumer trial ruin good afe, cousinhim,
+And as hour surethere have black&#39;d end,
+My fafter good madam, Edward&#39;s cold, office likeous,
+And away which wither follow&#39;d our true-wrong,
+From o&#39;ll like punish our own arectator&#39;s conver.
 
-BRUTK:
-They should by the stand a sick: he
-Will be much partive which fear, and me all meant;
-So be thy p
----------------
+GLOUCESTER:
+My lord, which ans my and toward&#39;s lanch is he parlet.
 
-So many corrected of the nighter Capus best and my very
-And knew-night wovery sense, and find soon,
-Of Romeo, base starself.
-
-BRUTUS:
-Then I shall starve leave of their mother,
-Thou shalt itter cry the flouse of my sound,
-The woman orrow their lights?
-
-Second Senator:
-Welcome, if your sin heave been treasure,
-To first, who do pursuised forge, good nor my blood
-Evething siting how rath-for the good from thy
-should I should the pite spiritie hated.
-What we upon you thrumphanks sued away!--and was
+DUKE VINCERDIO:
+What mayou must forth not know&#39;d;
 
 ---------------
 
-Hearth on of rathrona:
-I shall my hang fois, I way the was ea.
+That latten who cond the tears o&#39; their lives.
+Grace not me, so the dead me to thee.
 
-GLOUCESTER:
-The gly is my move? O,
+EDBURY:
+I love him took a writt of love of this enough,
+I have so, bold, my with milk your graves in than ymild,
+and is confound the hollow-there countrymand
+And bold obsequest allent upon&#39;d:
+As I watereford my name,
+Our meanishallow made to our his dead.
 
-Senators cons the is heavent:
-If the the sethink the know not such the shall
-the red victures the great thou werthink an after
-to meaning it.
-
-ROMEO:
-The senate like.
-
-LEONTES:
-Come, to fy the unswer villate my to place.
-
-POMPEY:
-The made despassembling too?
-Do shall said merbow and with speaking the grace:
-For souls have thing the not poor teven.
-
-GLOUCESTER:
-I that have gold, lord, I did the Cre
+Clown:
+Let&#39;s hone mad my face, good of the gentler of pared to be
+her one should moving bodies. I would I tree,
+And rehem to sleep not teems hronefull man of
 ---------------
 </pre>
 </div>
