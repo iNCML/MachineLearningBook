@@ -35,7 +35,7 @@ NOTE: we are still working on these labs and each lab will be made public as soo
 - **Lab 5**: [Fully-Connected Neural Networks](labs/pdf/Lab5_Fully_Connected_Neural_Networks.pdf) (available at [Colab](https://colab.research.google.com/drive/1TY3fAAS18lyGrlEsvLhaYm6fIBP7CDgD), [ipynb](labs/ipynb/Lab5_Fully_Connected_Neural_Networks.ipynb), matlab)
 - **Lab 6**: [Convolutional Neural Networks](labs/pdf/Lab6_Convolutional_Neural_Networks.pdf)  (available at [Colab](https://colab.research.google.com/drive/1Zkeujeoh4jNR9bQ67kfuIE7cV6KifZS2), [ipynb](labs/ipynb/Lab6_Convolutional_Neural_Networks.ipynb), matlab)
 - **Lab 7**: [Transformers](labs/pdf/Lab7_Transformers.pdf) (available at [Colab](https://colab.research.google.com/drive/1RvaBdX-KrgCNkVoo39UYqH1qzd-hAT5q), [ipynb](labs/ipynb/Lab7_Transformers.ipynb), matlab) 
-- **Lab 8**: Matrix Factorization 
+- **Lab 8**: [Matrix Factorization](abs/pdf/Lab8_Matrix_Factorization.pdf)  (available at [Colab](https://colab.research.google.com/drive/1JaGmlkrC03URmnfkKtOakckP_ds20-WA), [ipynb](labs/ipynb/Lab8_Matrix_Factorization.ipynb), matlab) 
 - **Lab 9**: Decision Trees, Random Forests and Boosted Trees 
 - **Lab 10**: Gaussian Classifiers and Gaussian Mixture Models 
 
